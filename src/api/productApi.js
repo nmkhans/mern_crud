@@ -34,5 +34,6 @@ const deleteProducts = async (id) => {
 export {
     getProducts,
     addProducts,
+    updateProducts,
     deleteProducts
 }
