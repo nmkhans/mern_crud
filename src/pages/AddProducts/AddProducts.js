@@ -1,15 +1,17 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
 import PageTitle from '../../components/PageTitle/PageTitle';
+import toast from "cogo-toast";
+import { useNavigate } from "react-router-dom";
+import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { addProducts } from "../../api/productApi";
 import uploadImage from "../../api/imageApi";
 
 const AddProducts = () => {
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
-
         const image = data.image[0];
         const imageUrl = await uploadImage(image);
 
@@ -20,7 +22,8 @@ const AddProducts = () => {
         }
 
         const response = await addProducts(productData);
-        console.log(response)
+        toast.success(response.message);
+        navigate("/");
     }
 
     return (
