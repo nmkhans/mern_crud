@@ -8,7 +8,7 @@ import { addProducts } from "../../api/productApi";
 import uploadImage from "../../api/imageApi";
 
 const AddProducts = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
 
     const onSubmit = async (data) => {
@@ -23,6 +23,7 @@ const AddProducts = () => {
 
         const response = await addProducts(productData);
         toast.success(response.message);
+        reset();
         navigate("/");
     }
 
