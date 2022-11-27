@@ -13,7 +13,7 @@ function App() {
 
   return (
     <>
-      {(location.pathname !== "/login" &&
+      {(location.pathname !== "/login" ||
         location.pathname !== "/register"
       ) && <Header />}
       <Routes>
