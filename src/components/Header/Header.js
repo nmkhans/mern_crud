@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
     const { isAuthenticated, logout } = useAuth0();
+    
     return (
         <>
             <Navbar bg="dark" variant="dark" expand="lg">
