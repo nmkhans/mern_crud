@@ -1,8 +1,21 @@
 import React from 'react';
 import Button from "react-bootstrap/Button"
+import { deleteProducts } from '../../api/productApi';
+import toast from "cogo-toast";
 
-const ProductRow = ({ product }) => {
+const ProductRow = ({ product, setResult, setModal, setUpdateId }) => {
     const { _id, name, code, quantity, unitPrice } = product;
+
+    const handleDelete = async (id) => {
+        const result = await deleteProducts(id);
+        setResult(result.succcess)
+        toast.success(result.message)
+    }
+
+    const handleUpdate = (id) => {
+        setModal(true);
+        setUpdateId(id)
+    }
 
     return (
         <tr>
@@ -13,10 +26,16 @@ const ProductRow = ({ product }) => {
             <td>{quantity}</td>
             <td>
                 <span>
-                    <Button variant="warning text-white">edit</Button>
+                    <Button
+                        variant="warning text-white"
+                        onClick={() => handleUpdate(_id)}
+                    >edit</Button>
                 </span>
                 <span className="ms-3">
-                    <Button variant="danger">delete</Button>
+                    <Button
+                        variant="danger"
+                        onClick={() => handleDelete(_id)}
+                    >delete</Button>
                 </span>
             </td>
         </tr>
