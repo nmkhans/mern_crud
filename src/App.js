@@ -13,9 +13,7 @@ function App() {
 
   return (
     <>
-      {(location.pathname !== "/login" ||
-        location.pathname !== "/register"
-      ) && <Header />}
+      {(location.pathname !== "/login") && <Header />}
       <Routes>
         <Route path="/" element={
           <ProtectedRoute>

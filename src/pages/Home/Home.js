@@ -3,7 +3,6 @@ import { getProducts } from '../../api/productApi';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { Container, Row } from "react-bootstrap";
 import ProductCard from './../../components/ProductCard/ProductCard';
-import LoadingOverlay from 'react-loading-overlay';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -15,17 +14,6 @@ const Home = () => {
         }
         fetchData()
     }, [])
-
-    if (products.length === 0) {
-        return (
-            <LoadingOverlay
-                active={true}
-                spinner
-                text='Loading your products...'
-                className="vh-100"
-            />
-        )
-    }
 
     return (
         <section className="py-5">

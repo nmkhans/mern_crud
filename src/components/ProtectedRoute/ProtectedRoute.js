@@ -1,10 +1,15 @@
 import { useLocation, Navigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ProtectedRoute = ({ children }) => {
-    const user = true;
+    const { isAuthenticated, isLoading  } = useAuth0();
     const location = useLocation();
 
-    if (!user) {
+    if(isLoading) {
+        return "..."
+    }
+
+    if (!isAuthenticated) {
         return <Navigate to="/login" state={{ from: location }} replace />
     }
 
