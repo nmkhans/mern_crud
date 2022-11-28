@@ -3,12 +3,25 @@ import { useForm } from "react-hook-form";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { updateProducts } from '../../api/productApi';
+import toast from "cogo-toast";
 
-const UpdateModal = ({ show, onHide, updateId }) => {
-    const { register, handleSubmit } = useForm();
+const UpdateModal = ({ show, onHide, updateId, setResult, setModal }) => {
+    const { register, handleSubmit, reset } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data)
+    const onSubmit = async (data) => {
+        const updatedData = {
+            ...data,
+            updatedDate: Date.now()
+        }
+
+        const res = await updateProducts(updatedData, updateId);
+        console.log(res)
+
+        setResult(res.success);
+        toast.success(res.message);
+        reset();
+        setModal(false)
     }
 
     return (
@@ -40,7 +53,7 @@ const UpdateModal = ({ show, onHide, updateId }) => {
                         <Form.Control
                             type="number"
                             placeholder="Enter product price"
-                            {...register("price")}
+                            {...register("unitPrice")}
                         />
                     </Form.Group>
 

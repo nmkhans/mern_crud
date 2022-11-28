@@ -48,6 +48,8 @@ const ManageProducts = () => {
                         show={modal}
                         onHide={() => setModal(false)}
                         updateId={updateId}
+                        setResult={setResult}
+                        setModal={setModal}
                     />
                 </Table>
             </Container>

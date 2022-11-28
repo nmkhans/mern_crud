@@ -19,8 +19,8 @@ const addProducts = async (body) => {
 const updateProducts = async (body, id) => {
     const url = `${process.env.REACT_APP_API_BASEURL}/api/v1/update-product/${id}`;
     const res = await axios.put(url, body);
-    console.log(res)
 
+    return res.data
 }
 
 const deleteProducts = async (id) => {
