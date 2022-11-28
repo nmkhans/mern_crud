@@ -7,6 +7,7 @@ import Home from './pages/Home/Home';
 import AddProducts from './pages/AddProducts/AddProducts';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Login from './pages/Login/Login';
+import ManageProducts from './pages/ManageProducts/ManageProducts';
 
 function App() {
 
@@ -20,6 +21,12 @@ function App() {
         <Route path="/add-products" element={
           <ProtectedRoute>
             <AddProducts />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/manage-products" element={
+          <ProtectedRoute>
+            <ManageProducts />
           </ProtectedRoute>
         } />
       </Routes>

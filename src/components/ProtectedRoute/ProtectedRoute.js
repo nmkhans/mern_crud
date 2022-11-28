@@ -6,7 +6,9 @@ const ProtectedRoute = ({ children }) => {
     const location = useLocation();
 
     if(isLoading) {
-        return "..."
+        return (
+            <p>Loading...</p>
+        )
     }
 
     if (!isAuthenticated) {

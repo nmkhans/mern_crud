@@ -16,6 +16,7 @@ const Header = () => {
                         <Nav className="ms-auto d-flex align-items-center">
                             <Nav.Link as={Link} to="/">Home</Nav.Link>
                             <Nav.Link as={Link} to="/add-products">Add Product</Nav.Link>
+                            <Nav.Link as={Link} to="/manage-products">Manage Product</Nav.Link>
                             <Nav.Link>
                                 {
                                     isAuthenticated && (
