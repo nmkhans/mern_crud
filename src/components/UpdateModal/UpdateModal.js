@@ -1,8 +1,15 @@
 import React from 'react';
+import { useForm } from "react-hook-form";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const UpdateModal = ({ show, onHide, updateId }) => {
+    const { register, handleSubmit } = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data)
+    }
 
     return (
         <Modal
@@ -13,21 +20,53 @@ const UpdateModal = ({ show, onHide, updateId }) => {
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
+                <Modal.Title className="w-100 text-center" id="contained-modal-title-vcenter">
+                    Update Product
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Centered Modal</h4>
-                <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                    consectetur ac, vestibulum at eros.
-                </p>
+                <Form className="p-5 pt-3" onSubmit={handleSubmit(onSubmit)}>
+                    <Form.Group className="mb-3" controlId="productName">
+                        <Form.Label>Product Name:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter product name"
+                            {...register("name")}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="productPrice">
+                        <Form.Label>Product Price</Form.Label>
+                        <Form.Control
+                            type="number"
+                            placeholder="Enter product price"
+                            {...register("price")}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="productQuantity">
+                        <Form.Label>Product Quantity</Form.Label>
+                        <Form.Control
+                            type="number"
+                            placeholder="Enter product quantity"
+                            {...register("quantity")}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="productStock">
+                        <Form.Label>Product Code</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter product code"
+                            {...register("code")}
+                        />
+                    </Form.Group>
+
+                    <Button className="w-100 mt-3" variant="primary" type="submit">
+                        Update
+                    </Button>
+                </Form>
             </Modal.Body>
-            <Modal.Footer>
-                <Button>Update</Button>
-            </Modal.Footer>
         </Modal>
     );
 };
