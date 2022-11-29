@@ -3,9 +3,15 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
-    const { name, code, image, quantity, unitPrice } = product;
+    const navigate = useNavigate();
+    const { _id, name, code, image, quantity, unitPrice } = product;
+
+    const handleNavigate = (id) => {
+        navigate(`/product-detail/${id}`)
+    }
 
     return (
         <Col>
@@ -22,7 +28,7 @@ const ProductCard = ({ product }) => {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <Button className="w-100">See Detail</Button>
+                    <Button onClick={() => handleNavigate(_id)} className="w-100">See Detail</Button>
                 </Card.Footer>
             </Card>
         </Col>
