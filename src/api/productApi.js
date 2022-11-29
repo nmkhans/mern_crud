@@ -8,6 +8,14 @@ const getProducts = async () => {
     return data;
 }
 
+const getSingleProduct = async (id) => {
+    const url = `${process.env.REACT_APP_API_BASEURL}/api/v1/get-single-product/${id}`;
+    const res = await axios.get(url);
+    const data = await res.data.data;
+
+    return data
+}
+
 const addProducts = async (body) => {
     const url = `${process.env.REACT_APP_API_BASEURL}/api/v1/add-product`;
     const res = await axios.post(url, body);
@@ -33,6 +41,7 @@ const deleteProducts = async (id) => {
 
 export {
     getProducts,
+    getSingleProduct,
     addProducts,
     updateProducts,
     deleteProducts

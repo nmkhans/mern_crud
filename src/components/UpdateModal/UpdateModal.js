@@ -3,15 +3,20 @@ import { useForm } from "react-hook-form";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { updateProducts } from '../../api/productApi';
+import { getSingleProduct, updateProducts } from '../../api/productApi';
 import toast from "cogo-toast";
 
 const UpdateModal = ({ show, onHide, updateId, setResult, setModal }) => {
     const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = async (data) => {
+        const prevData = await getSingleProduct(updateId);
+
         const updatedData = {
-            ...data,
+            name: data.name ? data.name : prevData.name,
+            code: data.code ? data.code : prevData.code,
+            unitPrice: data.unitPrice ? data.unitPrice : prevData.unitPrice,
+            quantity: data.quantity ? data.quantity : prevData.quantity, 
             updatedDate: Date.now()
         }
 
