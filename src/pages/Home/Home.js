@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from '../../api/productApi';
 import CardGroup from 'react-bootstrap/CardGroup';
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Spinner } from "react-bootstrap";
 import ProductCard from './../../components/ProductCard/ProductCard';
 
 const Home = () => {
@@ -14,6 +14,14 @@ const Home = () => {
         }
         fetchData()
     }, [])
+
+    if(products.length === 0) {
+        return (
+            <div className="text-center mt-5">
+                <Spinner style={{width: "100px", height: "100px"}} animation="border" size="md" />
+            </div>
+        )
+    }
 
     return (
         <section className="py-5">

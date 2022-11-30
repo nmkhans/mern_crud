@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
 
     if(isLoading) {
         return (
-            <p>Loading...</p>
+            <p>Redirecting...</p>
         )
     }
 
